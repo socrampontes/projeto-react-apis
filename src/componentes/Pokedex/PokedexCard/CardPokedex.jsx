@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   CardFormat,
@@ -14,35 +13,25 @@ import {
 } from "./Styled-Card";
 import { goToDetails } from "../../../Routes/cordinations";
 
-export const CardPokemon = (props) => {
+export const CardPokedex = (props) => {
   const {
-    index,
     pokemons,
     setPokemonsPokedex,
     setAllPokemons,
-    pokemonsPokedex,
+    allPokemons,
+    todosPokemons,
     toUpperCase
-    
   } = props;
   const navigate = useNavigate(pokemons);
-  const [button, setButton] = useState(true);
 
-  const handlePokemon = (pokemonss) => {
-    const pokedex = [...pokemonsPokedex, pokemonss];
-    setPokemonsPokedex(pokedex);
-    localStorage.setItem('pokemons', JSON.stringify(pokedex)) 
-    setButton(false);
+  const deletePokemon = (pokemonToDelete) => {
+    const updatedPokedex = todosPokemons.filter(
+      (pokemon) => pokemon.id !== pokemonToDelete.id
+    );
+    setPokemonsPokedex(updatedPokedex);
+    localStorage.setItem("pokemons", JSON.stringify(updatedPokedex));
   };
-  
-  
-  useEffect(() => {
-    const compara2 = pokemonsPokedex.map((pokemon) => pokemon.name);
-  
-    if (compara2.includes(pokemons.name)) {
-      setButton(false);
-    }
-    setAllPokemons(true);
-  }, []);
+ 
 
   return (
     <>
@@ -55,8 +44,13 @@ export const CardPokemon = (props) => {
             <p>#{pokemons.id}</p>
             <h1>{toUpperCase(pokemons.name)} </h1>
             <Types>
-              {pokemons.types.map((type , index) => {
-                return <Type key={index} type={type.type.name}><ImgTypes type={type.type.name}/>{toUpperCase(type.type.name)}</Type>;
+              {pokemons.types.map((type, index) => {
+                return (
+                  <Type key={index} type={type.type.name}>
+                    <ImgTypes type={type.type.name} />
+                    {toUpperCase(type.type.name)}
+                  </Type>
+                );
               })}
             </Types>
           </div>
@@ -75,18 +69,15 @@ export const CardPokemon = (props) => {
             alt={pokemons.name}
           />
           <ImgPokeBoll src="./img/wing.png" />
-          {button ? (
-            <Button
-              onClick={() => {
-                handlePokemon(pokemons);
-              }}
-            >
-              {" "}
-              Capturar!
-            </Button>
-          ) : (
-            <InPokedex>Na pokedex</InPokedex>
-          )}
+
+          <Button
+            onClick={() => {
+              deletePokemon(pokemons);
+            }}
+          >
+            {" "}
+            Excluir!
+          </Button>
         </ImgBnt>
       </CardFormat>
     </>

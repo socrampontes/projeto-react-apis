@@ -1,22 +1,27 @@
 import { useNavigate } from "react-router-dom";
 import { goToPokedex } from "../../Routes/cordinations";
-import { Header, Img, Button } from "./Header-Styled";
+import { Header, Img, Button, AllPokemons} from "./Header-Styled";
 import { useState } from "react";
+import {IoChevronBackSharp} from "react-icons/io5"
 
-export const HeaderPage = () => {
-  const [nav, setNav] = useState(1);
+export const HeaderPage = (props) => {
+  const { allPokemons , visible  } = props;
+  
   const navigate = useNavigate();
+
   return (
     <>
       <Header>
-        <Img src="./img/image 1.png" alt="" />
-        <Button
+        {allPokemons ? <div> </div> : <AllPokemons href="/"> <IoChevronBackSharp/> Todos Pokémons</AllPokemons>}
+
+        <Img src="./img/image.png" alt="" />
+        {visible? <Button
           onClick={() => {
             goToPokedex(navigate);
           }}
         >
           Pokédex
-        </Button>
+        </Button> : <div></div>}
       </Header>
     </>
   );

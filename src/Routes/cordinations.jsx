@@ -1,5 +1,5 @@
 export const goToHome = (navigate) =>{
-    navigate("/home")
+    navigate("/")
 }
 export const goToPokedex = (navigate) =>{
 navigate("/pokedex")
