@@ -17,3 +17,11 @@ export const Card = styled.div`
   flex-wrap: wrap;
   background-color:#5D5D5D;
 `;
+export const Loading = styled.div`
+width:100vw;
+height:100vh;
+display:flex;
+justify-content:center;
+margin-top:10rem;
+
+`

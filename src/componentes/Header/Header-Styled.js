@@ -25,3 +25,15 @@ export const Button = styled.button`
   background-color: #33a4f5;
   grid-column: 14/15;
 `;
+
+export const AllPokemons = styled.a`
+display:flex;
+align-self:center;
+justify-self:center;
+grid-column:2/6;
+font-size:1.8vw;
+text-decoration:underline;
+font-weight:bolder;
+color:black;
+align-items:center;
+`

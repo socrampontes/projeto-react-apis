@@ -14,7 +14,15 @@ const GlobalStyled = createGlobalStyle`
 function App() {
   const [pokemons, setPokemons] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [pokemonsPokedex, setPokemonsPokedex] = useState("");
+  const [pokemonsDetails, setPokemonsDetails] = useState("");
+  const [allPokemons, setAllPokemons] = useState(true);
+  const [pokemonsPokedex, setPokemonsPokedex] = useState([]);
+
+  useEffect(() => {
+    setAllPokemons(true);
+    if(localStorage.getItem("pokemons")){
+    setPokemonsPokedex(JSON.parse(localStorage.getItem("pokemons")))}
+  }, []);
 
   const fetchPokemons = async () => {
     try {
@@ -33,11 +41,21 @@ function App() {
     fetchPokemons();
   }, [Promise]);
 
-  
   return (
     <>
       <GlobalStyled />
-      <Router pokemons={pokemons} setPokemons={setPokemons} loading={loading} pokemonsPokedex={pokemonsPokedex}  setPokemonsPokedex={setPokemonsPokedex}/>
+      <Router
+        pokemons={pokemons}
+        setPokemons={setPokemons}
+        loading={loading}
+        pokemonsDetails={pokemonsDetails}
+        setPokemonsDetails={setPokemonsDetails}
+        allPokemons={allPokemons}
+        setAllPokemons={setAllPokemons}
+        pokemonsPokedex={pokemonsPokedex}
+          setPokemonsPokedex={setPokemonsPokedex}
+        
+      />
     </>
   );
 }
