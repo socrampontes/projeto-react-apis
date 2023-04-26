@@ -16,22 +16,41 @@ import {
   Loading,
   ImgTypes,
   Types,
-  Total
+  Total,
+  
 } from "./Details-Styled";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 export const DetailsPage = (props) => {
-  const { pokemons, loading, setAllPokemons , toUpperCase} = props;
+  const {
+    pokemons,
+    loading,
+    setAllPokemons,
+    toUpperCase,
+    isOpenPokedex,
+    setIsOpenPokedex,
+    isOpen,
+    setIsOpen,
+  } = props;
 
+  setAllPokemons(false);
   const pathParams = useParams();
   const renderPokemon = () => {
     const pokemon = pokemons.filter(
       (pokemon) => pokemon.name === pathParams.pokemonName
     );
-    setAllPokemons(false);
-    console.log(
-      pokemon.map((type)=>type)
-    );
+
+    const stats = (stats, position) => {
+      const [maxStat, setMaxStat] = useState([]);
+      stats.map((stat) => {
+        if (stat.base_stat > maxStat) {
+          setMaxStat(stat.base_stat);
+        }
+      });
+      const percent = (stats[position].base_stat / maxStat) * 100;
+      return percent;
+    };
 
     return (
       <>
@@ -46,54 +65,55 @@ export const DetailsPage = (props) => {
             <span>
               HP<span> {pokemon[0].stats[0].base_stat}</span>
               <BarraStats>
-                <Stats></Stats>
+                <Stats stats={stats(pokemon[0].stats, [0])} />
               </BarraStats>
             </span>
             <hr />
             <span>
               Attack <span> {pokemon[0].stats[1].base_stat}</span>
               <BarraStats>
-                <Stats></Stats>
+                <Stats stats={stats(pokemon[0].stats, [1])} />
               </BarraStats>
             </span>
             <hr />
             <span>
               Defense <span>{pokemon[0].stats[2].base_stat}</span>
               <BarraStats>
-                <Stats></Stats>
+                <Stats stats={stats(pokemon[0].stats, [2])} />
               </BarraStats>
             </span>
             <hr />
             <span>
               Sp. Atk <span> {pokemon[0].stats[3].base_stat}</span>
               <BarraStats>
-                <Stats></Stats>
+                <Stats stats={stats(pokemon[0].stats, [3])} />
               </BarraStats>
             </span>
             <hr />
             <span>
               Sp. Def <span> {pokemon[0].stats[4].base_stat}</span>
               <BarraStats>
-                <Stats></Stats>
+                <Stats stats={stats(pokemon[0].stats, [4])} />
               </BarraStats>
             </span>
             <hr />
             <span>
               Speed <span> {pokemon[0].stats[5].base_stat}</span>
               <BarraStats>
-                <Stats></Stats>
+                <Stats stats={stats(pokemon[0].stats, [5])} />
               </BarraStats>
             </span>
             <hr />
             <Total>
-              Total <span>
-              {pokemon[0].stats[0].base_stat +
-                pokemon[0].stats[1].base_stat +
-                pokemon[0].stats[2].base_stat +
-                pokemon[0].stats[3].base_stat +
-                pokemon[0].stats[4].base_stat +
-                pokemon[0].stats[5].base_stat}
-                </span>
+              Total{" "}
+              <span>
+                {pokemon[0].stats[0].base_stat +
+                  pokemon[0].stats[1].base_stat +
+                  pokemon[0].stats[2].base_stat +
+                  pokemon[0].stats[3].base_stat +
+                  pokemon[0].stats[4].base_stat +
+                  pokemon[0].stats[5].base_stat}
+              </span>
             </Total>
             <hr />
           </StatsOrganization>
@@ -104,31 +124,30 @@ export const DetailsPage = (props) => {
               <h1>{toUpperCase(pokemon[0].name)}</h1>
 
               <Types>
-              {pokemon[0].types.map((type, index) => {
-                return (
-                  <Type key={index} type={type.type.name}>
-                    <ImgTypes type={type.type.name} />
-                    {toUpperCase(type.type.name)}
-                  </Type>
-                );
-              })}
-            </Types>
+                {pokemon[0].types.map((type, index) => {
+                  return (
+                    <Type key={index} type={type.type.name}>
+                      <ImgTypes type={type.type.name} />
+                      {toUpperCase(type.type.name)}
+                    </Type>
+                  );
+                })}
+              </Types>
             </DivOrganization>
             <Moves>
               <H2>Moves:</H2>
               <Move>
-                <span>{toUpperCase(pokemon[0].moves[0].move.name)}</span>
+                <p>{toUpperCase(pokemon[0].moves[0].move.name)}</p>
               </Move>
               <Move>
-                <span>{toUpperCase(pokemon[0].moves[1].move.name)}</span>
+                <p>{toUpperCase(pokemon[0].moves[1].move.name)}</p>
               </Move>
               <Move>
-                <span>{toUpperCase(pokemon[0].moves[2].move.name)}</span>
+                <p>{toUpperCase(pokemon[0].moves[2].move.name)}</p>
               </Move>
               <Move>
-                <span>{toUpperCase(pokemon[0].moves[4].move.name)}</span>
+                <p>{toUpperCase(pokemon[0].moves[4].move.name)}</p>
               </Move>
-              
             </Moves>
           </DivOrganization>
 
@@ -158,3 +177,48 @@ export const DetailsPage = (props) => {
     </>
   );
 };
+{
+  /* <hr />
+<span>
+  HP<span> {stats(pokemon[0].stats , [0])}</span>
+  <BarraStats>
+    <Stats></Stats>
+  </BarraStats>
+</span>
+<hr />
+<span>
+  HP<span> {stats(pokemon[0].stats , [1])}</span>
+  <BarraStats>
+    <Stats></Stats>
+  </BarraStats>
+</span>
+<hr />
+<span>
+  HP<span> {stats(pokemon[0].stats , [2])}</span>
+  <BarraStats>
+    <Stats></Stats>
+  </BarraStats>
+</span>
+<hr />
+<span>
+  HP<span> {stats(pokemon[0].stats , [3])}</span>
+  <BarraStats>
+    <Stats></Stats>
+  </BarraStats>
+</span>
+<hr />
+<span>
+  HP<span> {stats(pokemon[0].stats , [4])}</span>
+  <BarraStats>
+    <Stats></Stats>
+  </BarraStats>
+</span>
+<hr />
+<span>
+  HP<span> {stats(pokemon[0].stats , [5])}</span>
+  <BarraStats>
+    <Stats></Stats>
+  </BarraStats>
+</span>
+<hr /> */
+}

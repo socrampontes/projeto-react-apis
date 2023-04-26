@@ -10,7 +10,7 @@ export const Header = styled.div`
   `;
 export const Img = styled.img`
   align-self: center;
-  grid-column: 9/9;
+  grid-column: 8/10;
  
   `;
 
@@ -20,20 +20,27 @@ export const Button = styled.button`
   font-size: 1.5em;
   font-weight: bold;
   justify-content: center;
-  width: 14rem;
+  font-family: 'Poppins' sans-serif;
+  width: 17rem;
   height: 4rem;
   background-color: #33a4f5;
-  grid-column: 14/15;
+  
+  grid-column: 15/16;
 `;
 
 export const AllPokemons = styled.a`
 display:flex;
 align-self:center;
 justify-self:center;
-grid-column:2/6;
+grid-column:1/6;
 font-size:1.8vw;
 text-decoration:underline;
 font-weight:bolder;
 color:black;
 align-items:center;
+`
+export const Div = styled.div`
+width: 17rem;
+  height: 4rem;
+grid-column: 15/16;
 `

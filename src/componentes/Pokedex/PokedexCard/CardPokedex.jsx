@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+
 import {
   CardFormat,
   Img,
@@ -20,7 +21,9 @@ export const CardPokedex = (props) => {
     setAllPokemons,
     allPokemons,
     todosPokemons,
-    toUpperCase
+    toUpperCase, 
+    isOpenPokedex,
+              setIsOpenPokedex,
   } = props;
   const navigate = useNavigate(pokemons);
 
@@ -72,7 +75,7 @@ export const CardPokedex = (props) => {
 
           <Button
             onClick={() => {
-              deletePokemon(pokemons);
+              deletePokemon(pokemons), setIsOpenPokedex(true);
             }}
           >
             {" "}

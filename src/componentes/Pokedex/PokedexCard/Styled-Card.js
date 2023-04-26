@@ -99,8 +99,8 @@ export const Button = styled.button`
   position: absolute;
   transform: translate(-30%, 155%);
   width: 8rem;
-  background-color: #ffffff;
-  color: black;
+  background-color: #FF6262;
+  color: #FFFFFF;
 `;
 
 export const InPokedex = styled.div`

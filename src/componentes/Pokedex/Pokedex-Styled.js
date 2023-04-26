@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Home = styled.div`
   
   background-color:#5D5D5D;
-  height:82vh;
+  height:100vh;
   
 `;
 

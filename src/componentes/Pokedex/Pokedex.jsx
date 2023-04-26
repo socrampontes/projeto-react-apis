@@ -2,6 +2,8 @@ import { PropagateLoader } from "react-spinners";
 import { Home, H1, Card, Loading } from "./Pokedex-Styled";
 import { CardPokedex } from "./PokedexCard/CardPokedex";
 import { useEffect } from "react";
+import { Modal } from "../Modal/modalPokedex";
+import { AllPokemons } from "../Header/Header-Styled";
 
 export const PokedexPage = (props) => {
   const {
@@ -11,12 +13,14 @@ export const PokedexPage = (props) => {
     setAllPokemons,
     todosPokemons,
     setVisible,
-    toUpperCase
+    toUpperCase,
+    isOpenPokedex,
+    setIsOpenPokedex,
   } = props;
   useEffect(() => {
     setAllPokemons(false);
     setVisible(false);
-  }, []);
+  }, [AllPokemons]);
   return (
     <>
       <Home>
@@ -38,12 +42,15 @@ export const PokedexPage = (props) => {
                     setAllPokemons={setAllPokemons}
                     todosPokemons={pokemons}
                     toUpperCase={toUpperCase}
+                    isOpenPokedex={isOpenPokedex}
+                    setIsOpenPokedex={setIsOpenPokedex}
                   />
                 );
               })}
             </Card>
           </>
         )}
+        {isOpenPokedex ? <Modal isOpen={isOpenPokedex} setIsOpen={setIsOpenPokedex} ></Modal> : <></>}
       </Home>
     </>
   );

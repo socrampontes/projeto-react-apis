@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-import(
-  "https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap"
-);
-
 export const Details = styled.div`
   background-color: #5d5d5d;
   height: 120vh;
@@ -56,13 +52,14 @@ export const CardFormat = styled.div`
   background-repeat: no-repeat;
   background-position: right;
   background-size: 50%;
-  margin: 2%;
+  margin: 3%;
   display: flex;
   position: relative;
   gap: 3%;
   padding: 1vw;
   width: 94%;
 `;
+
 export const TittleDetalais = styled.h1`
   font-size: 3vw;
   margin: 0 0 4% 2%;
@@ -71,18 +68,18 @@ export const TittleDetalais = styled.h1`
 
 export const Img = styled.img`
   display: flex;
-  width: 100%;
-  transform: translate(-5%, -55%);
+  width: 110%;
+  transform: translate(-12%, -53%);
 `;
 export const ImgSub = styled.img`
   width: 100%;
-  display:flex;
-  align-self:center;
-  border-radius:0.8vw;
-  background-color:#FFFFFF;
-  border:1px black solid;
-  margin:4%;
-  `;
+  display: flex;
+  align-self: center;
+  border-radius: 0.8vw;
+  background-color: #ffffff;
+  border: 1px black solid;
+  margin: 4%;
+`;
 export const DivOrganization = styled.div`
   display: flex;
   flex-direction: column;
@@ -111,7 +108,7 @@ export const StatsOrganization = styled.div`
   span {
     margin-top: 1%;
     color: #737373;
-    font-family: "Montserrat", sans-serif;
+
     font-size: 1vw;
     display: flex;
     justify-content: end;
@@ -124,30 +121,36 @@ export const StatsOrganization = styled.div`
 export const BarraStats = styled.div`
   height: 1.5vh;
   border-radius: 10px;
-  width: 61%;
-  margin: 1.5% 0 0 5%;
+  width: 52%;
+  height: 45%;
+  margin: 1.5% 10% 0 5%;
 `;
 export const Stats = styled.div`
   height: 100%;
   border-radius: 10px;
-  background-color: black;
-  width: 50%;
+  background-color: ${(props) => {
+    if (props.stats >= 83) {
+      return "#FFDE6A";
+    } else if (props.stats < 84 ) {
+      return "#FF7C2D";
+    }
+  }};
+  width: ${(props) => props.stats}%;
 `;
 
 export const Move = styled.div`
   margin: 2% 0 8% 0;
-  span{
-    display:inline;
-    text-align:center;
-    font-family: "Montserrat", sans-serif; 
+  p {
+    display: inline;
+    text-align: center;
     background: #ececec;
     border: 1.7px dashed #ffffff;
     border-radius: 12px;
-    padding:3% 5% 3% 5%;
-    color: black;
+    padding: 3% 5% 3% 5%;
+    color: #000000;
     font-size: 1vw;
-  };
-  `;
+  }
+`;
 export const H2 = styled.h2`
   color: black;
   font-size: 1.8vw;
@@ -264,7 +267,6 @@ export const ImgTypes = styled.div`
         return "url('/img/flying.png');";
       case "steel":
         return "url('/img/steel.png');";
-
       default:
         break;
     }
@@ -273,21 +275,21 @@ export const ImgTypes = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   width: 2rem;
-  margin-right: 1rem;
+  margin-right: 10%;
 `;
 export const Total = styled.div`
   color: #737373;
   display: flex;
-  transform: translate(10.7%, 0%);
-  font-size: 1.1rem;
-  font-family: "Montserrat", sans-serif;
-  
+  transform: translate(10.7%, 10%);
+  font-size: 1vw;
+  margin-right: 7%;
 
-  span{
-    display:flex;
+  span {
+    font-size: 1vw;
+    display: flex;
     transform: translate(10.7%, -14%);
-    color:black;
-    font-weight: bold;
-    margin-left: 0.5rem;
-  };
+    color: black;
+    font-weight: bolder;
+    margin: 1% 0 0 5%;
+  }
 `;

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { goToPokedex } from "../../Routes/cordinations";
-import { Header, Img, Button, AllPokemons} from "./Header-Styled";
+import { Header, Img, Button, AllPokemons , Div} from "./Header-Styled";
 import { useState } from "react";
 import {IoChevronBackSharp} from "react-icons/io5"
 
@@ -21,7 +21,7 @@ export const HeaderPage = (props) => {
           }}
         >
           Pokédex
-        </Button> : <div></div>}
+        </Button> : <Div></Div>}
       </Header>
     </>
   );
