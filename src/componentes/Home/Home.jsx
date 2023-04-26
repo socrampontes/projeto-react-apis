@@ -1,7 +1,8 @@
 import { PropagateLoader } from "react-spinners";
 import { Home, H1, Card, Loading } from "./Home-Styled";
 import { CardPokemon } from "./PokeCard/Card";
-import { useState } from "react";
+import { Modal } from "../Modal/modal";
+import { useEffect, useState } from "react";
 
 export const HomePage = (props) => {
   const {
@@ -12,9 +13,14 @@ export const HomePage = (props) => {
     pokemonsPokedex,
     button,
     setButton,
-    toUpperCase
+    toUpperCase,
+    isOpen,
+    setIsOpen,
+    setVisible,
   } = props;
-
+  useEffect(() => {
+    setVisible(true);
+  }, []);
   return (
     <>
       <Home>
@@ -38,12 +44,15 @@ export const HomePage = (props) => {
                     setButton={setButton}
                     pokemonsCompare={pokemons}
                     toUpperCase={toUpperCase}
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
                   />
                 );
               })}
             </Card>
           </>
         )}
+        {isOpen ? <Modal isOpen={isOpen} setIsOpen={setIsOpen}></Modal> : <></>}
       </Home>
     </>
   );

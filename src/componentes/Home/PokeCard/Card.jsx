@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Modal } from "../../Modal/modal";
+
 import {
   CardFormat,
   Img,
@@ -21,8 +23,9 @@ export const CardPokemon = (props) => {
     setPokemonsPokedex,
     setAllPokemons,
     pokemonsPokedex,
-    toUpperCase
-    
+    toUpperCase,
+    isOpen,
+    setIsOpen,
   } = props;
   const navigate = useNavigate(pokemons);
   const [button, setButton] = useState(true);
@@ -30,14 +33,13 @@ export const CardPokemon = (props) => {
   const handlePokemon = (pokemonss) => {
     const pokedex = [...pokemonsPokedex, pokemonss];
     setPokemonsPokedex(pokedex);
-    localStorage.setItem('pokemons', JSON.stringify(pokedex)) 
+    localStorage.setItem("pokemons", JSON.stringify(pokedex));
     setButton(false);
   };
-  
-  
+
   useEffect(() => {
     const compara2 = pokemonsPokedex.map((pokemon) => pokemon.name);
-  
+
     if (compara2.includes(pokemons.name)) {
       setButton(false);
     }
@@ -55,8 +57,13 @@ export const CardPokemon = (props) => {
             <p>#{pokemons.id}</p>
             <h1>{toUpperCase(pokemons.name)} </h1>
             <Types>
-              {pokemons.types.map((type , index) => {
-                return <Type key={index} type={type.type.name}><ImgTypes type={type.type.name}/>{toUpperCase(type.type.name)}</Type>;
+              {pokemons.types.map((type, index) => {
+                return (
+                  <Type key={index} type={type.type.name}>
+                    <ImgTypes type={type.type.name} />
+                    {toUpperCase(type.type.name)}
+                  </Type>
+                );
               })}
             </Types>
           </div>
@@ -78,7 +85,7 @@ export const CardPokemon = (props) => {
           {button ? (
             <Button
               onClick={() => {
-                handlePokemon(pokemons);
+                handlePokemon(pokemons), setIsOpen(true);
               }}
             >
               {" "}
@@ -89,6 +96,7 @@ export const CardPokemon = (props) => {
           )}
         </ImgBnt>
       </CardFormat>
+      
     </>
   );
 };

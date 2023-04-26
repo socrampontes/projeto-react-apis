@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import { getPokemonData, getPokemons } from "./API/api";
 import { Router } from "./Routes/Router";
+import { Modal } from "./componentes/Modal/modal";
+
+
 
 const GlobalStyled = createGlobalStyle`
   *{
@@ -17,11 +20,13 @@ function App() {
   const [pokemonsDetails, setPokemonsDetails] = useState("");
   const [allPokemons, setAllPokemons] = useState(true);
   const [pokemonsPokedex, setPokemonsPokedex] = useState([]);
-
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenPokedex, setIsOpenPokedex] = useState(false);
   useEffect(() => {
     setAllPokemons(true);
-    if(localStorage.getItem("pokemons")){
-    setPokemonsPokedex(JSON.parse(localStorage.getItem("pokemons")))}
+    if (localStorage.getItem("pokemons")) {
+      setPokemonsPokedex(JSON.parse(localStorage.getItem("pokemons")));
+    }
   }, []);
 
   const fetchPokemons = async () => {
@@ -53,9 +58,13 @@ function App() {
         allPokemons={allPokemons}
         setAllPokemons={setAllPokemons}
         pokemonsPokedex={pokemonsPokedex}
-          setPokemonsPokedex={setPokemonsPokedex}
-        
+        setPokemonsPokedex={setPokemonsPokedex}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        isOpenPokedex={isOpenPokedex}
+        setIsOpenPokedex={setIsOpenPokedex}
       />
+       
     </>
   );
 }
