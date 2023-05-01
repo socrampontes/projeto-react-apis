@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-
+import { goToDetails } from "../../Routes/cordinations";
 import {
   CardFormat,
   Img,
@@ -10,44 +10,36 @@ import {
   Button,
   Types,
   ImgTypes,
-  InPokedex,
 } from "./Styled-Card";
-import { goToDetails } from "../../../Routes/cordinations";
 
 export const CardPokedex = (props) => {
   const {
-    pokemons,
+    capturedPokemon,
     setPokemonsPokedex,
-    setAllPokemons,
-    allPokemons,
-    todosPokemons,
-    toUpperCase, 
-    isOpenPokedex,
-              setIsOpenPokedex,
+    pokemonsPokedex,
+    toUpperCase,
+    setIsOpenPokedex,
+    details,
+    deletePokemon
   } = props;
-  const navigate = useNavigate(pokemons);
+  const navigate = useNavigate(capturedPokemon);
 
-  const deletePokemon = (pokemonToDelete) => {
-    const updatedPokedex = todosPokemons.filter(
-      (pokemon) => pokemon.id !== pokemonToDelete.id
-    );
-    setPokemonsPokedex(updatedPokedex);
-    localStorage.setItem("pokemons", JSON.stringify(updatedPokedex));
-  };
+  
+
  
 
   return (
     <>
       <CardFormat
-        key={pokemons.id}
-        type={pokemons.types.map((type) => type.type.name)}
+        key={capturedPokemon.id}
+        type={capturedPokemon.types.map((type) => type.type.name)}
       >
         <Div>
           <div>
-            <p>#{pokemons.id}</p>
-            <h1>{toUpperCase(pokemons.name)} </h1>
+            <p>#{capturedPokemon.id}</p>
+            <h1>{toUpperCase(capturedPokemon.name)} </h1>
             <Types>
-              {pokemons.types.map((type, index) => {
+              {capturedPokemon.types.map((type, index) => {
                 return (
                   <Type key={index} type={type.type.name}>
                     <ImgTypes type={type.type.name} />
@@ -59,7 +51,8 @@ export const CardPokedex = (props) => {
           </div>
           <a
             onClick={() => {
-              goToDetails(navigate, pokemons.name);
+              goToDetails(navigate, capturedPokemon.name),
+                details(capturedPokemon.name);
             }}
           >
             Detalhes
@@ -67,15 +60,17 @@ export const CardPokedex = (props) => {
         </Div>
         <ImgBnt>
           <Img
-            key={pokemons.url}
-            src={pokemons.sprites.other["official-artwork"].front_default}
-            alt={pokemons.name}
+            key={capturedPokemon.url}
+            src={
+              capturedPokemon.sprites.other["official-artwork"].front_default
+            }
+            alt={capturedPokemon.name}
           />
           <ImgPokeBoll src="./img/wing.png" />
 
           <Button
             onClick={() => {
-              deletePokemon(pokemons), setIsOpenPokedex(true);
+              deletePokemon(capturedPokemon.name), setIsOpenPokedex(true);
             }}
           >
             {" "}

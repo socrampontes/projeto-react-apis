@@ -1,89 +1,22 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { HomePage } from "../componentes/Home/Home";
-import { PokedexPage } from "../componentes/Pokedex/Pokedex";
+import { HomePage } from ".././Pages/Home/Home";
+import { PokedexPage } from "../Pages/Pokedex/Pokedex";
 import { DetailsPage } from "../componentes/Details/Details";
 import { HeaderPage } from "../componentes/Header/Header";
 import { ErrorPage } from "../Pages/ErrorPage";
-import { useState } from "react";
-import { Modal } from "../componentes/Modal/modal";
+import { useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 
-export const Router = (props) => {
-  const [button, setButton] = useState(true);
-  const [visible, setVisible] = useState(true);
-
-  const {
-    pokemons,
-    setPokemons,
-    loading,
-    pokemonsPokedex,
-    setPokemonsPokedex,
-    allPokemons,
-    setAllPokemons,
-    isOpen,
-    setIsOpen,
-    isOpenPokedex,
-    setIsOpenPokedex,
-  } = props;
-  const toUpperCase = (string) => {
-    return string[0].toUpperCase() + string.substr(1);
-  };
-
+export const Router = () => {
+  const context = useContext(GlobalContext)
+  const { allPokemons, visible } = context
   return (
     <BrowserRouter>
-      <HeaderPage allPokemons={allPokemons} visible={visible} />
+      <HeaderPage allPokemons={allPokemons} visible={visible}  />
       <Routes>
-        <Route
-          index
-          element={
-            <HomePage
-              pokemons={pokemons}
-              loading={loading}
-              setPokemonsPokedex={setPokemonsPokedex}
-              setAllPokemons={setAllPokemons}
-              pokemonsPokedex={pokemonsPokedex}
-              button={button}
-              setButton={setButton}
-              toUpperCase={toUpperCase}
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-              setVisible={setVisible}
-              visible={visible}
-              />
-          }
-        />
-        <Route
-          path="/pokedex"
-          element={
-            <PokedexPage
-              pokemons={pokemonsPokedex}
-              loading={loading}
-              setPokemonsPokedex={setPokemonsPokedex}
-              setAllPokemons={setAllPokemons}
-              allPokemons={allPokemons}
-              todosPokemons={pokemons}
-              setVisible={setVisible}
-              toUpperCase={toUpperCase}
-              isOpenPokedex={isOpenPokedex}
-              setIsOpenPokedex={setIsOpenPokedex}
-            />
-          }
-        />
-        <Route
-          path="/details/:pokemonName"
-          element={
-            <DetailsPage
-              pokemonsPokedex={pokemonsPokedex}
-              pokemons={pokemons}
-              loading={loading}
-              setAllPokemons={setAllPokemons}
-              toUpperCase={toUpperCase}
-              isOpenPokedex={isOpenPokedex}
-              setIsOpenPokedex={setIsOpenPokedex}
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-            />
-          }
-        />
+        <Route index element={<HomePage />} />
+        <Route path="/pokedex" element={<PokedexPage />} />
+        <Route path="/details/:pokemonName" element={<DetailsPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>

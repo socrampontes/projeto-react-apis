@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Modal } from "../../Modal/modal";
 
 import {
   CardFormat,
@@ -14,37 +13,30 @@ import {
   ImgTypes,
   InPokedex,
 } from "./Styled-Card";
-import { goToDetails } from "../../../Routes/cordinations";
+import { goToDetails } from "../../Routes/cordinations";
 
 export const CardPokemon = (props) => {
   const {
-    index,
     pokemons,
-    setPokemonsPokedex,
     setAllPokemons,
     pokemonsPokedex,
     toUpperCase,
-    isOpen,
     setIsOpen,
+    details,
+    catchPokemon,
   } = props;
+
   const navigate = useNavigate(pokemons);
+
   const [button, setButton] = useState(true);
 
-  const handlePokemon = (pokemonss) => {
-    const pokedex = [...pokemonsPokedex, pokemonss];
-    setPokemonsPokedex(pokedex);
-    localStorage.setItem("pokemons", JSON.stringify(pokedex));
-    setButton(false);
-  };
-
   useEffect(() => {
-    const compara2 = pokemonsPokedex.map((pokemon) => pokemon.name);
-
-    if (compara2.includes(pokemons.name)) {
+    const naPokedex = pokemonsPokedex.map((pokemon) => pokemon.name);
+    if (naPokedex.includes(pokemons.name)) {
       setButton(false);
     }
     setAllPokemons(true);
-  }, []);
+  }, [pokemonsPokedex]);
 
   return (
     <>
@@ -69,7 +61,7 @@ export const CardPokemon = (props) => {
           </div>
           <a
             onClick={() => {
-              goToDetails(navigate, pokemons.name);
+              goToDetails(navigate, pokemons.name), details(pokemons.name);
             }}
           >
             Detalhes
@@ -85,7 +77,7 @@ export const CardPokemon = (props) => {
           {button ? (
             <Button
               onClick={() => {
-                handlePokemon(pokemons), setIsOpen(true);
+                catchPokemon(pokemons.name), setIsOpen(true);
               }}
             >
               {" "}
@@ -96,7 +88,6 @@ export const CardPokemon = (props) => {
           )}
         </ImgBnt>
       </CardFormat>
-      
     </>
   );
 };

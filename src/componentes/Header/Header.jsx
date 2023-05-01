@@ -1,28 +1,98 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { goToPokedex } from "../../Routes/cordinations";
-import { Header, Img, Button, AllPokemons , Div} from "./Header-Styled";
-import { useState } from "react";
-import {IoChevronBackSharp} from "react-icons/io5"
+import {
+  Header,
+  Img,
+  Button,
+  AllPokemons,
+  ButtonExcluir,
+} from "./Header-Styled";
+import { useContext } from "react";
+import { IoChevronBackSharp } from "react-icons/io5";
+import { GlobalContext } from "../../context/GlobalContext";
+import { ModalPokedex } from "../../Pages/Modal/modalPokedex";
+import { Modal } from "../../Pages/Modal/modal";
 
-export const HeaderPage = (props) => {
-  const { allPokemons , visible  } = props;
-  
+export const HeaderPage = () => {
+  const context = useContext(GlobalContext);
+  const {
+    pokemonsDetails,
+    addOrDeletePokemon,
+    catchPokemon,
+    deletePokemon,
+    setIsOpen,
+    setIsOpenPokedex,
+    isOpenPokedex,
+    isOpen,
+  } = context;
+
   const navigate = useNavigate();
+
+  const location = useLocation();
+
+  const renderHeader = () => {
+    switch (location.pathname) {
+      case "/":
+        return (
+          <Header>
+            <Img src="http://localhost:5173/img/image.png" alt="" />
+            <Button
+              onClick={() => {
+                goToPokedex(navigate);
+              }}
+            >
+              Pokédex
+            </Button>
+          </Header>
+        );
+      case "/pokedex":
+        return (
+          <Header>
+            <AllPokemons href="/">
+              {" "}
+              <IoChevronBackSharp /> Todos Pokémons
+            </AllPokemons>
+
+            <Img src="./img/image.png" alt="" />
+          </Header>
+        );
+      case `/details/${pokemonsDetails}`:
+        return (
+          <Header>
+            <AllPokemons href="/">
+              {" "}
+              <IoChevronBackSharp /> Todos Pokémons
+            </AllPokemons>
+
+            <Img src="./img/image.png" alt="" />
+
+            {addOrDeletePokemon() ? (
+              <ButtonExcluir
+                onClick={() => {
+                  deletePokemon(pokemonsDetails), setIsOpenPokedex(true);
+                }}
+              >
+                Excluir da Pokedex
+              </ButtonExcluir>
+            ) : (
+              <Button
+                onClick={() => {
+                  catchPokemon(pokemonsDetails), setIsOpen(true);
+                }}
+              >
+                Capturar
+              </Button>
+            )}
+          </Header>
+        );
+    }
+  };
 
   return (
     <>
-      <Header>
-        {allPokemons ? <div> </div> : <AllPokemons href="/"> <IoChevronBackSharp/> Todos Pokémons</AllPokemons>}
-
-        <Img src="./img/image.png" alt="" />
-        {visible? <Button
-          onClick={() => {
-            goToPokedex(navigate);
-          }}
-        >
-          Pokédex
-        </Button> : <Div></Div>}
-      </Header>
+      {isOpenPokedex ? <ModalPokedex></ModalPokedex> : <></>}
+      {isOpen ? <Modal></Modal> : <></>}
+      {renderHeader()}
     </>
   );
 };

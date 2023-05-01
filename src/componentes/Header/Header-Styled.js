@@ -1,46 +1,54 @@
 import styled from "styled-components";
 
-export const Header = styled.div`
-  display: grid;
-  grid-template-columns: repeat(16, 1fr);
+export const Header = styled.header`
+width:100%;
+  display: flex;
+  justify-content:space-between;
+  padding:0 10%;
   height: 10rem;
   background-color: #fff;
   font-family: helvetica;
-  
-  `;
-export const Img = styled.img`
-  align-self: center;
-  grid-column: 8/10;
- 
+  background-position:center;
   `;
 
 export const Button = styled.button`
   display: flex;
   align-self: center;
-  font-size: 1.5em;
-  font-weight: bold;
-  justify-content: center;
-  font-family: 'Poppins' sans-serif;
+  align-items:center;
+  justify-content:center;
   width: 17rem;
   height: 4rem;
+  font-size: 160%;
+  font-weight: bold;
+  font-family: 'Poppins' sans-serif;
   background-color: #33a4f5;
-  
-  grid-column: 15/16;
+  grid-column: 6/8;
 `;
 
 export const AllPokemons = styled.a`
 display:flex;
 align-self:center;
 justify-self:center;
-grid-column:1/6;
 font-size:1.8vw;
 text-decoration:underline;
 font-weight:bolder;
 color:black;
 align-items:center;
 `
-export const Div = styled.div`
-width: 17rem;
+export const ButtonExcluir = styled.button`
+  display: flex;
+  align-self: center;
+  align-items:center;
+  justify-content:center;
+  font-size: 140%;
+  font-weight: bold;
+  justify-content: center;
+  font-family: 'Poppins' sans-serif;
+  width: 14%;
   height: 4rem;
-grid-column: 15/16;
-`
+  background-color: #FF6262;
+  grid-column: 6/8;
+`;
+ export const Img =styled.img`
+padding:1% 5%;
+ `
