@@ -24,6 +24,8 @@ export const CardPokemon = (props) => {
     setIsOpen,
     details,
     catchPokemon,
+    deletePokemon,
+    setIsOpenPokedex,
   } = props;
 
   const navigate = useNavigate(pokemons);
@@ -38,6 +40,8 @@ export const CardPokemon = (props) => {
     setAllPokemons(true);
   }, [pokemonsPokedex]);
 
+
+
   return (
     <>
       <CardFormat
@@ -46,7 +50,7 @@ export const CardPokemon = (props) => {
       >
         <Div>
           <div>
-            <p>#{pokemons.id}</p>
+            <p>#{pokemons.id.toString().padStart(2, '0')}</p>
             <h1>{toUpperCase(pokemons.name)} </h1>
             <Types>
               {pokemons.types.map((type, index) => {
@@ -84,7 +88,9 @@ export const CardPokemon = (props) => {
               Capturar!
             </Button>
           ) : (
-            <InPokedex>Na pokedex</InPokedex>
+            <InPokedex onClick={() => {deletePokemon(pokemons.name) , setButton(true) , setIsOpenPokedex(true)}}>
+              Excluir
+            </InPokedex>
           )}
         </ImgBnt>
       </CardFormat>

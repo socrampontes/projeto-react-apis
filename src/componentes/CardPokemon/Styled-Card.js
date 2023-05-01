@@ -40,14 +40,15 @@ export const CardFormat = styled.div`
         return "#DB7093";
       case "fairy":
         return "#DB7093";
-        case "steel":
+      case "steel":
         return "#BBBBBB;";
-        case "dark":
+      case "dark":
         return "#5C5365;";
       default:
         return "red";
     }
   }};
+  color: #ffffff;
 `;
 
 export const Img = styled.img`
@@ -89,10 +90,15 @@ export const Div = styled.div`
   p {
     font-size: 1.2rem;
     transform: translate(-1%, 50%);
+    
+    
   }
   h1 {
     margin-top: -1%;
     transform: translate(-1%, 10%);
+   
+    
+    
   }
 `;
 export const Button = styled.button`
@@ -103,12 +109,12 @@ export const Button = styled.button`
   color: black;
 `;
 
-export const InPokedex = styled.div`
+export const InPokedex = styled.button`
   position: absolute;
-  transform: translate(-30%, 220%);
-  font-size:1.3rem;
-  color: #ffffff;
-  font-weight:bold;
+  transform: translate(-30%, 155%);
+  width: 8rem;
+  background-color: #ff6262;
+  color: black;
 `;
 
 export const Type = styled.div`

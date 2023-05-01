@@ -4,6 +4,7 @@ import { CardPokemon } from "../../componentes/CardPokemon/Card";
 import { Modal } from "../Modal/modal";
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
+import { ModalPokedex } from "../Modal/modalPokedex";
 
 export const HomePage = () => {
   const context = useContext(GlobalContext);
@@ -19,6 +20,9 @@ export const HomePage = () => {
     setVisible,
     details,
     catchPokemon,
+    deletePokemon ,
+    isOpenPokedex,
+    setIsOpenPokedex,
   } = context;
 
   useEffect(() => {
@@ -48,6 +52,8 @@ export const HomePage = () => {
                     setIsOpen={setIsOpen}
                     catchPokemon={catchPokemon}
                     details={details}
+                    deletePokemon={deletePokemon}
+                    setIsOpenPokedex={setIsOpenPokedex}
                   />
                 );
               })}
@@ -55,6 +61,7 @@ export const HomePage = () => {
           </>
         )}
         {isOpen ? <Modal ></Modal> : <></>}
+        {isOpenPokedex ? <ModalPokedex></ModalPokedex> : <></>}
       </Home>
     </>
   );
