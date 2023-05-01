@@ -35,7 +35,7 @@ export const HeaderPage = () => {
       case "/":
         return (
           <Header>
-            <Img src="http://localhost:5173/img/image.png" alt="" />
+            <Img src="/img/image.svg" alt="" />
             <Button
               onClick={() => {
                 goToPokedex(navigate);
@@ -53,18 +53,18 @@ export const HeaderPage = () => {
               <IoChevronBackSharp /> Todos Pokémons
             </AllPokemons>
 
-            <Img src="./img/image.png" alt="" />
+            <Img src="./img/image.svg" alt="" />
           </Header>
         );
       case `/details/${pokemonsDetails}`:
         return (
           <Header>
-            <AllPokemons href="/">
+            { <AllPokemons href="/">
               {" "}
               <IoChevronBackSharp /> Todos Pokémons
-            </AllPokemons>
+            </AllPokemons> }
 
-            <Img src="./img/image.png" alt="" />
+            <Img src="/img/image.svg" alt="" />
 
             {addOrDeletePokemon() ? (
               <ButtonExcluir
@@ -80,7 +80,7 @@ export const HeaderPage = () => {
                   catchPokemon(pokemonsDetails), setIsOpen(true);
                 }}
               >
-                Capturar
+                Capturar!
               </Button>
             )}
           </Header>
@@ -90,9 +90,11 @@ export const HeaderPage = () => {
 
   return (
     <>
+    
       {isOpenPokedex ? <ModalPokedex></ModalPokedex> : <></>}
       {isOpen ? <Modal></Modal> : <></>}
       {renderHeader()}
+    
     </>
   );
 };
