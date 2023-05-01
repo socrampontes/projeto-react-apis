@@ -1,23 +1,26 @@
 import { PropagateLoader } from "react-spinners";
 import { Home, H1, Card, Loading } from "./Home-Styled";
-import { CardPokemon } from "./PokeCard/Card";
+import { CardPokemon } from "../../componentes/CardPokemon/Card";
 import { Modal } from "../Modal/modal";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { GlobalContext } from "../../context/GlobalContext";
 
-export const HomePage = (props) => {
+export const HomePage = () => {
+  const context = useContext(GlobalContext);
   const {
     pokemons,
     loading,
     setPokemonsPokedex,
     setAllPokemons,
     pokemonsPokedex,
-    button,
-    setButton,
     toUpperCase,
     isOpen,
     setIsOpen,
     setVisible,
-  } = props;
+    details,
+    catchPokemon,
+  } = context;
+
   useEffect(() => {
     setVisible(true);
   }, []);
@@ -40,19 +43,18 @@ export const HomePage = (props) => {
                     setPokemonsPokedex={setPokemonsPokedex}
                     setAllPokemons={setAllPokemons}
                     pokemonsPokedex={pokemonsPokedex}
-                    button={button}
-                    setButton={setButton}
                     pokemonsCompare={pokemons}
                     toUpperCase={toUpperCase}
-                    isOpen={isOpen}
                     setIsOpen={setIsOpen}
+                    catchPokemon={catchPokemon}
+                    details={details}
                   />
                 );
               })}
             </Card>
           </>
         )}
-        {isOpen ? <Modal isOpen={isOpen} setIsOpen={setIsOpen}></Modal> : <></>}
+        {isOpen ? <Modal ></Modal> : <></>}
       </Home>
     </>
   );

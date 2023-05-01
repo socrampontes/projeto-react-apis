@@ -1,4 +1,6 @@
 import { PropagateLoader } from "react-spinners";
+import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import {
   Details,
   CardFormat,
@@ -17,26 +19,18 @@ import {
   ImgTypes,
   Types,
   Total,
-  
 } from "./Details-Styled";
-import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { GlobalContext } from "../../context/GlobalContext";
 
-export const DetailsPage = (props) => {
-  const {
-    pokemons,
-    loading,
-    setAllPokemons,
-    toUpperCase,
-    isOpenPokedex,
-    setIsOpenPokedex,
-    isOpen,
-    setIsOpen,
-  } = props;
+export const DetailsPage = () => {
+  const context = useContext(GlobalContext);
+  const { pokemons, loading, setAllPokemons, toUpperCase } = context;
 
-  setAllPokemons(false);
+  
+  
   const pathParams = useParams();
   const renderPokemon = () => {
+   
     const pokemon = pokemons.filter(
       (pokemon) => pokemon.name === pathParams.pokemonName
     );
@@ -53,7 +47,7 @@ export const DetailsPage = (props) => {
     };
 
     return (
-      <>
+     
         <CardFormat type={pokemon[0].types[0].type.name}>
           <DivOrganization>
             <ImgSub src={pokemon[0].sprites.front_default} alt="" />
@@ -158,12 +152,11 @@ export const DetailsPage = (props) => {
             />
           </DivOrganization>
         </CardFormat>
-      </>
     );
   };
 
   return (
-    <>
+    
       <Details>
         <TittleDetalais>Detalhes</TittleDetalais>
         {loading ? (
@@ -174,7 +167,7 @@ export const DetailsPage = (props) => {
           renderPokemon()
         )}
       </Details>
-    </>
+    
   );
 };
 {

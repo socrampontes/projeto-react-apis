@@ -1,26 +1,30 @@
 import { PropagateLoader } from "react-spinners";
 import { Home, H1, Card, Loading } from "./Pokedex-Styled";
-import { CardPokedex } from "./PokedexCard/CardPokedex";
-import { useEffect } from "react";
-import { Modal } from "../Modal/modalPokedex";
-import { AllPokemons } from "../Header/Header-Styled";
+import { CardPokedex } from "../../componentes/CardPokedex/CardPokedex";
+import { useContext, useEffect } from "react";
+import { ModalPokedex } from "../../Pages/Modal/modalPokedex";
+import { GlobalContext } from "../../context/GlobalContext";
 
-export const PokedexPage = (props) => {
+export const PokedexPage = () => {
+  const context = useContext(GlobalContext);
   const {
-    pokemons,
+    pokemonsPokedex,
     loading,
     setPokemonsPokedex,
     setAllPokemons,
-    todosPokemons,
     setVisible,
     toUpperCase,
     isOpenPokedex,
     setIsOpenPokedex,
-  } = props;
+    details,
+    deletePokemon,
+  } = context;
+
   useEffect(() => {
     setAllPokemons(false);
     setVisible(false);
-  }, [AllPokemons]);
+  }, [pokemonsPokedex]);
+
   return (
     <>
       <Home>
@@ -31,26 +35,25 @@ export const PokedexPage = (props) => {
         ) : (
           <>
             <H1>Meus pokemons</H1>
-            <Card key={pokemons.id}>
-              {pokemons.map((Pokemon, index) => {
+            <Card key={pokemonsPokedex.id}>
+              {pokemonsPokedex.map((Pokemon, index) => {
                 return (
                   <CardPokedex
                     key={index}
-                    index={index}
-                    pokemons={Pokemon}
+                    capturedPokemon={Pokemon}
                     setPokemonsPokedex={setPokemonsPokedex}
-                    setAllPokemons={setAllPokemons}
-                    todosPokemons={pokemons}
                     toUpperCase={toUpperCase}
-                    isOpenPokedex={isOpenPokedex}
                     setIsOpenPokedex={setIsOpenPokedex}
+                    pokemonsPokedex={pokemonsPokedex}
+                    details={details}
+                    deletePokemon={deletePokemon}
                   />
                 );
               })}
             </Card>
           </>
         )}
-        {isOpenPokedex ? <Modal isOpen={isOpenPokedex} setIsOpen={setIsOpenPokedex} ></Modal> : <></>}
+        {isOpenPokedex ? <ModalPokedex></ModalPokedex> : <></>}
       </Home>
     </>
   );

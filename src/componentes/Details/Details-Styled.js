@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Details = styled.div`
+width:100vw;
   background-color: #5d5d5d;
   height: 120vh;
   background-image: url(/img/pngwing1.png);
