@@ -44,6 +44,7 @@ export const CardPokemon = (props) => {
 
   return (
     <>
+    
       <CardFormat
         key={pokemons.id}
         type={pokemons.types.map((type) => type.type.name)}
