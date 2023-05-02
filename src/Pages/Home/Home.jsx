@@ -39,6 +39,7 @@ export const HomePage = () => {
           <>
             <H1>Todos os pokemons</H1>
             <Card>
+              
               {pokemons.map((Pokemon, index) => {
                 return (
                   <CardPokemon
