@@ -39,6 +39,7 @@ export const PokedexPage = () => {
               {pokemonsPokedex.map((Pokemon, index) => {
                 return (
                   <CardPokedex
+                  
                     key={index}
                     capturedPokemon={Pokemon}
                     setPokemonsPokedex={setPokemonsPokedex}
