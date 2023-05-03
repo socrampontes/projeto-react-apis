@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Details = styled.div`
-width:100vw;
+  width: 100vw;
   background-color: #5d5d5d;
   height: 120vh;
   background-image: url(/img/pngwing1.png);
@@ -93,6 +93,14 @@ export const DivOrganization = styled.div`
     font-size: 3vw;
   }
 `;
+export const DivOrganizationMove = styled.div`
+  background-color: #ffffff;
+  height: 100%;
+  max-height: 53vh;
+  margin: 15% 0 5% 0;
+  border-radius: 0.8vw;
+  padding: 5%;
+`;
 export const StatsOrganization = styled.div`
   display: flex;
   flex-direction: column;
@@ -132,7 +140,7 @@ export const Stats = styled.div`
   background-color: ${(props) => {
     if (props.stats >= 83) {
       return "#FFDE6A";
-    } else if (props.stats < 84 ) {
+    } else if (props.stats < 84) {
       return "#FF7C2D";
     }
   }};
@@ -141,6 +149,7 @@ export const Stats = styled.div`
 
 export const Move = styled.div`
   margin: 2% 0 8% 0;
+
   p {
     display: inline;
     text-align: center;
@@ -160,9 +169,12 @@ export const H2 = styled.h2`
 export const Moves = styled.div`
   background-color: #ffffff;
   height: 100%;
-  margin: 15% 0 5% 0;
-  border-radius: 0.8vw;
-  padding: 5%;
+  max-height: 44%;
+
+  overflow-y: auto;
+  ::-webkit-scrollbar {
+    border-radius: 10px;
+  }
 `;
 export const Loading = styled.div`
   width: 100vw;

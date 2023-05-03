@@ -49,21 +49,19 @@ export const GlobalState = (props) => {
       pokemonsPokedex.map((pokemon) => pokemon.name).includes(pokemonsDetails)
     ) {
       return true;
-    } else if(pokemons.map((pokemon) => pokemon.name).includes(pokemonsDetails)) 
-    return false;
+    } else  
+      return false;
   };
-  
-  const catchPokemon = (pokemon) => {
-    
-    pokemons.map((pokemons)=>{
 
-      if (pokemons.name === pokemon){
+  const catchPokemon = (pokemon) => {
+    pokemons.map((pokemons) => {
+      if (pokemons.name === pokemon) {
         const pokedex = [...pokemonsPokedex, pokemons];
         setPokemonsPokedex(pokedex);
-        localStorage.setItem("pokemons", JSON.stringify(pokedex)); 
+        localStorage.setItem("pokemons", JSON.stringify(pokedex));
         setButton(false);
-       }
-})
+      }
+    });
   };
 
   const deletePokemon = (pokemonToDelete) => {
@@ -98,8 +96,9 @@ export const GlobalState = (props) => {
     details,
     addOrDeletePokemon,
     catchPokemon,
-    deletePokemon
+    deletePokemon,
   };
+  
   return (
     <>
       <GlobalContext.Provider value={data}>

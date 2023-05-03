@@ -15,8 +15,6 @@ import {
 export const CardPokedex = (props) => {
   const {
     capturedPokemon,
-    setPokemonsPokedex,
-    pokemonsPokedex,
     toUpperCase,
     setIsOpenPokedex,
     details,
@@ -36,7 +34,7 @@ export const CardPokedex = (props) => {
       >
         <Div>
           <div>
-            <p>#{capturedPokemon.id}</p>
+            <p>#{capturedPokemon.id.toString().padStart(2, '0')}</p>
             <h1>{toUpperCase(capturedPokemon.name)} </h1>
             <Types>
               {capturedPokemon.types.map((type, index) => {
