@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Details = styled.div`
   width: 100vw;
   background-color: #5d5d5d;
-  height: 120vh;
+  height:150%;
   background-image: url(/img/pngwing1.png);
   background-repeat: no-repeat;
   background-position: center bottom;
@@ -56,9 +56,10 @@ export const CardFormat = styled.div`
   margin: 3%;
   display: flex;
   position: relative;
-  gap: 3%;
+  gap: 1%;
   padding: 1vw;
   width: 94%;
+  height:43vw;
 `;
 
 export const TittleDetalais = styled.h1`
@@ -73,7 +74,7 @@ export const Img = styled.img`
   transform: translate(-12%, -53%);
 `;
 export const ImgSub = styled.img`
-  width: 100%;
+  width: 93%;
   display: flex;
   align-self: center;
   border-radius: 0.8vw;
@@ -86,29 +87,35 @@ export const DivOrganization = styled.div`
   flex-direction: column;
   width: 25%;
   margin-left: 2%;
-  h4 {
-    margin: 8% 0 -10% 0;
+  h3 {
+   
+    font-size: 1.3vw;
   }
   h1 {
     font-size: 3vw;
+  }
+  span{
+    width:100%;
   }
 `;
 export const DivOrganizationMove = styled.div`
   background-color: #ffffff;
   height: 100%;
-  max-height: 53vh;
+  max-height: 60vh;
   margin: 15% 0 5% 0;
   border-radius: 0.8vw;
   padding: 5%;
+  
 `;
 export const StatsOrganization = styled.div`
   display: flex;
   flex-direction: column;
-  width: 32%;
+  width: 25%;
+  max-height:81vh;
   background-color: #ffffff;
   border-radius: 0.8vw;
   padding: 2%;
-  margin: 1% 1% 1% 1%;
+  margin: 1%;
   hr {
     color: #f0f0f0;
     opacity: 12%;
@@ -130,7 +137,7 @@ export const StatsOrganization = styled.div`
 export const BarraStats = styled.div`
   height: 1.5vh;
   border-radius: 10px;
-  width: 52%;
+  width: 45%;
   height: 45%;
   margin: 1.5% 10% 0 5%;
 `;
@@ -145,6 +152,7 @@ export const Stats = styled.div`
     }
   }};
   width: ${(props) => props.stats}%;
+  max-height:1rem;
 `;
 
 export const Move = styled.div`
@@ -169,11 +177,12 @@ export const H2 = styled.h2`
 export const Moves = styled.div`
   background-color: #ffffff;
   height: 100%;
-  max-height: 44%;
+  max-height: 13.4rem;
 
-  overflow-y: auto;
+  overflow-y: hidden;
   ::-webkit-scrollbar {
     border-radius: 10px;
+    
   }
 `;
 export const Loading = styled.div`
@@ -234,12 +243,13 @@ export const Type = styled.div`
   border: 0.1px dashed #ffffff;
   border-radius: 8px;
   padding: 6% 12% 6% 3%;
+  
 `;
 
 export const Types = styled.div`
   display: flex;
   gap: 0.5rem;
-  padding-top: 3%;
+  width:90%;
 `;
 export const ImgTypes = styled.div`
   background-image: ${(props) => {

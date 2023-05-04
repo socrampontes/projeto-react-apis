@@ -24,6 +24,7 @@ export const GlobalState = (props) => {
     try {
       setLoading(true);
       const data = await getPokemons();
+      
       const promises = data.results.map(async (pokemon) => {
         return await getPokemonData(pokemon.url);
       });
@@ -54,9 +55,12 @@ export const GlobalState = (props) => {
   };
 
   const catchPokemon = (pokemon) => {
+    
     pokemons.map((pokemons) => {
-      if (pokemons.name === pokemon) {
-        const pokedex = [...pokemonsPokedex, pokemons];
+      
+      if (pokemons.data.name === pokemon) {
+        const pokedex = [...pokemonsPokedex, pokemons.data];
+      
         setPokemonsPokedex(pokedex);
         localStorage.setItem("pokemons", JSON.stringify(pokedex));
         setButton(false);
