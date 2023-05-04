@@ -44,7 +44,7 @@ export const HomePage = () => {
                 return (
                   <CardPokemon
                     key={index}
-                    pokemons={Pokemon}
+                    pokemons={Pokemon.data}
                     setPokemonsPokedex={setPokemonsPokedex}
                     setAllPokemons={setAllPokemons}
                     pokemonsPokedex={pokemonsPokedex}
