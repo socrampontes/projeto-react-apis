@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Details = styled.div`
   width: 100vw;
   background-color: #5d5d5d;
-  height:150%;
+  height: 150%;
   background-image: url(/img/pngwing1.png);
   background-repeat: no-repeat;
   background-position: center bottom;
@@ -59,7 +59,7 @@ export const CardFormat = styled.div`
   gap: 1%;
   padding: 1vw;
   width: 94%;
-  height:43vw;
+  height: 43vw;
 `;
 
 export const TittleDetalais = styled.h1`
@@ -88,14 +88,13 @@ export const DivOrganization = styled.div`
   width: 25%;
   margin-left: 2%;
   h3 {
-   
     font-size: 1.3vw;
   }
   h1 {
     font-size: 3vw;
   }
-  span{
-    width:100%;
+  span {
+    width: 100%;
   }
 `;
 export const DivOrganizationMove = styled.div`
@@ -105,13 +104,12 @@ export const DivOrganizationMove = styled.div`
   margin: 15% 0 5% 0;
   border-radius: 0.8vw;
   padding: 5%;
-  
 `;
 export const StatsOrganization = styled.div`
   display: flex;
   flex-direction: column;
   width: 25%;
-  max-height:81vh;
+  max-height: 81vh;
   background-color: #ffffff;
   border-radius: 0.8vw;
   padding: 2%;
@@ -152,7 +150,7 @@ export const Stats = styled.div`
     }
   }};
   width: ${(props) => props.stats}%;
-  max-height:1rem;
+  max-height: 1rem;
 `;
 
 export const Move = styled.div`
@@ -182,7 +180,6 @@ export const Moves = styled.div`
   overflow-y: hidden;
   ::-webkit-scrollbar {
     border-radius: 10px;
-    
   }
 `;
 export const Loading = styled.div`
@@ -243,19 +240,18 @@ export const Type = styled.div`
   border: 0.1px dashed #ffffff;
   border-radius: 8px;
   padding: 6% 12% 6% 3%;
-  
 `;
 
 export const Types = styled.div`
   display: flex;
   gap: 0.5rem;
-  width:90%;
+  width: 90%;
 `;
 export const ImgTypes = styled.div`
   background-image: ${(props) => {
     switch (props.type) {
       case "grass":
-        return "url('./img/grass.png');";
+        return "url('/img/grass.png');";
       case "fire":
         return "url('/img/fire.png');";
       case "water":

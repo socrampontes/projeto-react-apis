@@ -26,7 +26,7 @@ import { GlobalContext } from "../../context/GlobalContext";
 export const DetailsPage = () => {
   const context = useContext(GlobalContext);
   const { pokemons, loading, toUpperCase } = context;
-  const [maxStat, setMaxStat] = useState([]); 
+  const [maxStat, setMaxStat] = useState([]);
 
   const pathParams = useParams();
   const renderPokemon = () => {
@@ -117,7 +117,7 @@ export const DetailsPage = () => {
                 {pokemon[0].data.types.map((type, index) => {
                   return (
                     <Type key={index} type={type.type.name}>
-                      <ImgTypes type={type.type.name} />
+                      { type.type.name && <ImgTypes type={type.type.name} />}
                       {toUpperCase(type.type.name)}
                     </Type>
                   );
@@ -141,7 +141,9 @@ export const DetailsPage = () => {
 
         <DivOrganization>
           <Img
-            src={pokemon[0].data.sprites.other["official-artwork"].front_default}
+            src={
+              pokemon[0].data.sprites.other["official-artwork"].front_default
+            }
             alt={pokemon[0].data.name}
           />
         </DivOrganization>
@@ -162,48 +164,4 @@ export const DetailsPage = () => {
     </Details>
   );
 };
-{
-  /* <hr />
-<span>
-  HP<span> {stats(pokemon[0].stats , [0])}</span>
-  <BarraStats>
-    <Stats></Stats>
-  </BarraStats>
-</span>
-<hr />
-<span>
-  HP<span> {stats(pokemon[0].stats , [1])}</span>
-  <BarraStats>
-    <Stats></Stats>
-  </BarraStats>
-</span>
-<hr />
-<span>
-  HP<span> {stats(pokemon[0].stats , [2])}</span>
-  <BarraStats>
-    <Stats></Stats>
-  </BarraStats>
-</span>
-<hr />
-<span>
-  HP<span> {stats(pokemon[0].stats , [3])}</span>
-  <BarraStats>
-    <Stats></Stats>
-  </BarraStats>
-</span>
-<hr />
-<span>
-  HP<span> {stats(pokemon[0].stats , [4])}</span>
-  <BarraStats>
-    <Stats></Stats>
-  </BarraStats>
-</span>
-<hr />
-<span>
-  HP<span> {stats(pokemon[0].stats , [5])}</span>
-  <BarraStats>
-    <Stats></Stats>
-  </BarraStats>
-</span>
-<hr /> */
-}
+
