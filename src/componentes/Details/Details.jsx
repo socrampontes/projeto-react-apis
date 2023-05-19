@@ -117,7 +117,7 @@ export const DetailsPage = () => {
                 {pokemon[0].data.types.map((type, index) => {
                   return (
                     <Type key={index} type={type.type.name}>
-                      { type.type.name && <ImgTypes type={type.type.name} />}
+                      {type.type.name && <ImgTypes type={type.type.name} />}
                       {toUpperCase(type.type.name)}
                     </Type>
                   );
@@ -164,4 +164,3 @@ export const DetailsPage = () => {
     </Details>
   );
 };
-
