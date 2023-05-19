@@ -12,7 +12,7 @@
 
 ### Visualização
 
-![Projeto](./src/assets/preview.png)
+![Projeto](./src/assets/2023-05-19_19-37.png)
 
 ### Demonstração
 
