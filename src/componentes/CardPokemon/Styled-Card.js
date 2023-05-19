@@ -177,7 +177,7 @@ export const ImgTypes = styled.div`
   background-image: ${(props) => {
     switch (props.type) {
       case "grass":
-        return "url('./img/grass.png');";
+        return "url('/img/grass.png');";
       case "fire":
         return "url('/img/fire.png');";
       case "water":
@@ -212,7 +212,6 @@ export const ImgTypes = styled.div`
         return "url('/img/flying.png');";
       case "steel":
         return "url('/img/steel.png');";
-
       default:
         break;
     }
